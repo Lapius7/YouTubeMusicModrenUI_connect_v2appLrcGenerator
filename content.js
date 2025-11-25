@@ -3,7 +3,7 @@
     let config = { deepLKey: null, useTrans: true, mode: true };
     let currentKey = null;
     let lyricsData = [];
-    let hasTimestamp = false;
+    let hasTimestamp = false; // タイムスタンプの有無フラグ
     
     const ui = {
         container: null, bg: null, wrapper: null, 
@@ -16,7 +16,7 @@
     let uploadMenuGlobalSetup = false;
     let deleteDialogGlobalSetup = false;
 
-
+    // ▼ グラス風メニュー/ダイアログ用のスタイルを追加
     (function injectGlassMenuStyle() {
         const styleId = 'ytm-glass-menu-style';
         if (document.getElementById(styleId)) return;
@@ -182,15 +182,15 @@
         clear: () => confirm('全データを削除しますか？') && storage._api?.clear(() => location.reload())
     };
 
-
+    // LRCHub形式対応 + タイムスタンプ無しのときは静的テキスト扱い
     const parseLRC = (lrc) => {
         hasTimestamp = false;
         if (!lrc) return [];
 
-
+        // タグが1つでもあるかチェック
         const tagTest = /\[\d{2}:\d{2}\.\d{2,3}\]/;
         if (!tagTest.test(lrc)) {
-
+            // ★タイムスタンプ無し → time:null の静的テキストとして扱う
             return lrc
                 .split(/\r?\n/)
                 .map(t => t.trim())
@@ -201,7 +201,7 @@
                 }));
         }
 
-
+        // ここからはタイムスタンプ付き
         hasTimestamp = true;
 
         const tagExp = /\[(\d{2}):(\d{2})\.(\d{2,3})\]/g;
@@ -218,7 +218,7 @@
             const time = min * 60 + sec + frac;
 
             if (lastTime !== null) {
-
+                // 前のタグから今回のタグの直前までが「前の行の歌詞」
                 const rawText = lrc.slice(lastIndex, match.index);
                 const text = rawText.replace(/\r?\n/g, ' ').trim();
                 if (text) {
@@ -230,7 +230,7 @@
             lastIndex = tagExp.lastIndex;
         }
 
-
+        // 最後のタグ以降のテキストも行として追加
         if (lastTime !== null && lastIndex < lrc.length) {
             const rawText = lrc.slice(lastIndex);
             const text = rawText.replace(/\r?\n/g, ' ').trim();
@@ -268,7 +268,7 @@
         return (t && a) ? { title: t.textContent, artist: a.textContent.split('•')[0].trim(), src: null } : null;
     };
 
-
+    // ★現在再生中の動画URLを取得して youtu.be に変換
     const getCurrentVideoUrl = () => {
         try {
             const url = new URL(location.href);
@@ -276,7 +276,7 @@
             if (vid) {
                 return `https://youtu.be/${vid}`;
             }
-
+            // vパラメータがない場合はそのまま
             return location.href;
         } catch (e) {
             console.warn('Failed to get current video url', e);
@@ -284,7 +284,7 @@
         }
     };
 
-
+    // ★現在再生中の動画IDだけ欲しいとき用
     const getCurrentVideoId = () => {
         try {
             const url = new URL(location.href);
@@ -310,7 +310,7 @@
         handleInteraction();
     }
 
-
+    // ★ Uploadボタン用 グラスUIメニュー作成
     function setupUploadMenu(uploadBtn) {
         if (!ui.btnArea || ui.uploadMenu) return;
 
@@ -348,13 +348,13 @@
             }
         };
 
-
+        // Uploadボタンをトグルとして使う
         uploadBtn.addEventListener('click', (ev) => {
             ev.stopPropagation();
             toggleMenu();
         });
 
-  
+        // メニュー内クリック処理
         ui.uploadMenu.addEventListener('click', (ev) => {
             const target = ev.target.closest('.ytm-upload-menu-item');
             if (!target) return;
@@ -362,10 +362,10 @@
             toggleMenu(false);
 
             if (action === 'local') {
-
+                // ① ローカルファイル（.lrc/.txt）アップロード
                 ui.input?.click();
             } else if (action === 'add-sync') {
-
+                // ② LRCHub manual に video_url 付きで飛ぶ
                 const videoUrl = getCurrentVideoUrl();
                 const base = 'https://lrchub.coreone.work';
                 const lrchubUrl = videoUrl
@@ -373,7 +373,7 @@
                     : base;
                 window.open(lrchubUrl, '_blank');
             } else if (action === 'fix') {
-
+                // ③ 歌詞の間違い修正リクエスト → GitHub の編集画面へ
                 const vid = getCurrentVideoId();
                 if (!vid) {
                     alert('動画IDが取得できませんでした。YouTube Music の再生画面で実行してください。');
@@ -384,7 +384,7 @@
             }
         });
 
-
+        // 画面のどこかをクリックしたらメニューを閉じる
         if (!uploadMenuGlobalSetup) {
             uploadMenuGlobalSetup = true;
             document.addEventListener('click', (ev) => {
@@ -396,7 +396,7 @@
         }
     }
 
- 
+    // ★ 歌詞削除用グラスダイアログ
     function setupDeleteDialog(trashBtn) {
         if (!ui.btnArea || ui.deleteDialog) return;
 
@@ -552,13 +552,13 @@
         // Uploadボタン
         const uploadBtnConfig = {
             txt: 'Upload',
-            click: () => {}
+            click: () => {} // 実際の処理は setupUploadMenu 内で設定
         };
 
         const trashBtnConfig = {
             txt: '🗑️',
             cls: 'icon-btn',
-            click: () => {} //
+            click: () => {} // 実処理はグラスダイアログで
         };
 
         const settingsBtnConfig = {
@@ -575,11 +575,11 @@
             ui.btnArea.appendChild(btn);
 
             if (b === uploadBtnConfig) {
-
+                // Uploadボタンにグラスメニューを紐づけ
                 setupUploadMenu(btn);
             }
             if (b === trashBtnConfig) {
-
+                // 削除ボタンにグラスダイアログを紐づけ
                 setupDeleteDialog(btn);
             }
         });
@@ -623,7 +623,7 @@
         }
         
         document.body.classList.add('ytm-custom-layout');
-        initLayout();
+        initLayout(); // Ensure UI exists
 
         const meta = getMetadata();
         if (!meta) return;
@@ -647,20 +647,20 @@
     }
 
     async function loadLyrics(meta) {
-
+        // DeepL設定読み込み
         if (!config.deepLKey) config.deepLKey = await storage.get('ytm_deepl_key');
         const cachedTrans = await storage.get('ytm_trans_enabled');
         if (cachedTrans !== undefined) config.useTrans = cachedTrans;
 
-
+        // まずはストレージから読み込み
         let data = await storage.get(currentKey + "_TR") || await storage.get(currentKey);
         
-
+        // まだキャッシュがないときだけ API へ
         if (!data) {
             try {
                 const track = meta.title.replace(/\s*[\(-\[].*?[\)-]].*/, "");
                 const artist = meta.artist;
-                const youtube_url = getCurrentVideoUrl(); 
+                const youtube_url = getCurrentVideoUrl(); // ★現在のURLを付与
 
                 const res = await new Promise(resolve => {
                     chrome.runtime.sendMessage(
@@ -715,7 +715,7 @@
         const hasData = Array.isArray(data) && data.length > 0;
         document.body.classList.toggle('ytm-no-lyrics', !hasData);
         
-
+        // 歌詞が1行も無いとき → LRCHubへの案内を表示
         if (!hasData) {
             const meta = getMetadata();
             const title = meta?.title || '';
@@ -745,14 +745,14 @@
             return;
         }
 
-
+        // 歌詞があるとき
         data.forEach(line => {
             const row = createEl('div', '', 'lyric-line', `<span>${line.text}</span>`);
             if (line.translation) {
                 row.appendChild(createEl('span', '', 'lyric-translation', line.translation));
             }
             row.onclick = () => {
-
+                // タイムスタンプが無い & time:null の場合はシークしない（ただのテキスト）
                 if (!hasTimestamp || line.time == null) return;
                 const v = document.querySelector('video');
                 if (v) v.currentTime = line.time;
@@ -773,12 +773,12 @@
         e.target.value = '';
     };
 
-
+    // Sync Logic
     document.addEventListener('timeupdate', (e) => {
         if (!document.body.classList.contains('ytm-custom-layout') || !lyricsData.length) return;
         if (e.target.tagName !== 'VIDEO') return; 
         
-
+        // タイムスタンプが無い場合は自動スクロール・ハイライト無効
         if (!hasTimestamp) return;
 
         const t = e.target.currentTime;

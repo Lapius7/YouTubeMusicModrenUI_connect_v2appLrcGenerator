@@ -3,8 +3,8 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
     if (req.type === 'TRANSLATE') {
         const { text, apiKey } = req.payload;
         const endpoint = apiKey.endsWith(':fx') 
-            ? 'https:
-            : 'https:
+            ? 'https://api-free.deepl.com/v2/translate' 
+            : 'https://api.deepl.com/v2/translate';
 
         fetch(endpoint, {
             method: 'POST',
@@ -38,7 +38,7 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
 
             body: JSON.stringify({ track, artist, youtube_url })
         })
-        .then(r => r.text()) 
+        .then(r => r.text())
         .then(text => {
             let lyrics = '';
             try {
@@ -76,5 +76,6 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
 
         return true;
     }
+
 
 });
