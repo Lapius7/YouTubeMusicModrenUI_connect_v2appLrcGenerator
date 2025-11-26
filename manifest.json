@@ -1,26 +1,32 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Music Modern UI",
+  "name": "YouTube Music Modern UI connect Youtube LRC Generator",
   "version": "0.9.1",
-  "description": "YouTube Musicをもっと美しく",
+  "description": "「YouTube Music Modern UI」を「Youtube LRC Generator」と連携できるようにしたフォークです。",
   "permissions": [
     "storage"
   ],
   "host_permissions": [
     "https://music.youtube.com/*",
     "https://lrclib.net/*",
-    "https://lrchub.coreone.work/*",
     "https://api-free.deepl.com/*",
-    "https://api.deepl.com/*"
+    "https://api.deepl.com/*",
+    "https://v2.app.lapius7.com/*"
   ],
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "matches": ["https://music.youtube.com/*"],
-      "js": ["content.js"],
-      "css": ["style.css"],
+      "matches": [
+        "https://music.youtube.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "style.css"
+      ],
       "run_at": "document_idle"
     }
   ]
