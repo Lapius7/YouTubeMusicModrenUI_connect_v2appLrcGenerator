@@ -1,27 +1,52 @@
-/* === 既存レイアウト === */
 #ytm-custom-bg {
-  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-  background-size: cover; background-position: center center;
-  z-index: 1000; background-color: #050505;
-  filter: blur(80px) brightness(0.5) saturate(140%);
-  transform: scale(1.1); pointer-events: none; display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-position: center center;
+    z-index: 1000;
+    background-color: #050505;
+    filter: blur(80px) brightness(0.5) saturate(140%);
+    transform: scale(1.1);
+    pointer-events: none;
+    display: none;
 }
-body.ytm-custom-layout #ytm-custom-bg { display: block !important; }
+
+body.ytm-custom-layout #ytm-custom-bg {
+    display: block !important;
+}
 
 #ytm-custom-wrapper {
-  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-  display: none; flex-direction: row; justify-content: center; align-items: center;
-  gap: 8vw; padding: 60px 5vw 140px 5vw; box-sizing: border-box; z-index: 1001;
-  transition: all 0.5s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8vw;
+    padding: 60px 5vw 140px 5vw;
+    box-sizing: border-box;
+    z-index: 1001;
+    transition: all 0.5s ease;
 }
-body.ytm-custom-layout #ytm-custom-wrapper { display: flex !important; }
+
+body.ytm-custom-layout #ytm-custom-wrapper {
+    display: flex !important;
+}
 
 body.ytm-custom-layout.ytm-no-lyrics #my-lyrics-container {
     display: none !important;
 }
+
 body.ytm-custom-layout.ytm-no-lyrics #ytm-custom-wrapper {
     gap: 0;
 }
+
 body.ytm-custom-layout.ytm-no-lyrics #ytm-custom-left-col {
     transform: scale(1.1);
     transition: transform 0.5s ease;
@@ -30,321 +55,506 @@ body.ytm-custom-layout.ytm-no-lyrics #ytm-custom-left-col {
 body.ytm-custom-layout #player-bar-background,
 body.ytm-custom-layout #guide-wrapper,
 body.ytm-custom-layout ytmusic-mini-guide-renderer,
-body.ytm-custom-layout ytmusic-app-layout > [slot="nav-bar"],
-body.ytm-custom-layout #browse-page, 
-body.ytm-custom-layout #player-page, 
+body.ytm-custom-layout ytmusic-app-layout>[slot="nav-bar"],
+body.ytm-custom-layout #browse-page,
+body.ytm-custom-layout #player-page,
 body.ytm-custom-layout #main-panel,
-body.ytm-custom-layout .side-panel { 
-    visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;
+body.ytm-custom-layout .side-panel {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
 
 body.ytm-custom-layout ytmusic-nav-bar {
-    visibility: visible !important; opacity: 1 !important; pointer-events: auto !important;
-    position: fixed; top: 0; left: 0; width: 100%;
-    background: rgba(0,0,0,0.2) !important; backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255,255,255,0.05); z-index: 2000;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    z-index: 2000;
 }
+
 body.ytm-custom-layout ytmusic-search-box {
-    border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.1); border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
 }
 
-#ytm-custom-left-col { display: flex; flex-direction: column; align-items: center; width: 400px; text-align: center; transition: transform 0.5s ease; }
-#ytm-artwork-container { 
-    width: 100%; aspect-ratio: 1; border-radius: 16px; 
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6); overflow: hidden; margin-bottom: 30px; 
+#ytm-custom-left-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    text-align: center;
+    transition: transform 0.5s ease;
 }
-#ytm-artwork-container img { width: 100%; height: 100%; object-fit: cover; }
-#ytm-custom-title { font-family: "SF Pro Display", sans-serif; font-size: 32px; font-weight: 900; color: #fff; margin-bottom: 8px; line-height: 1.2; text-shadow: 0 4px 10px rgba(0,0,0,0.5); }
-#ytm-custom-artist { font-family: "SF Pro Display", sans-serif; font-size: 20px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 24px; }
 
-#ytm-btn-area { 
-    display: flex; gap: 10px; margin-top: 10px;
+#ytm-artwork-container {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+#ytm-artwork-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#ytm-custom-title {
+    font-family: "SF Pro Display", sans-serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 8px;
+    line-height: 1.2;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+#ytm-custom-artist {
+    font-family: "SF Pro Display", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 24px;
+}
+
+
+#ytm-btn-area {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
     transition: opacity 0.5s ease, visibility 0.5s ease;
     opacity: 1;
     visibility: visible;
 }
+
+
 #ytm-btn-area.inactive {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
 }
+
 .ytm-glass-btn {
-    padding: 8px 16px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 20px; color: #fff; cursor: pointer; font-weight: 700; backdrop-filter: blur(10px);
-    font-size: 13px; transition: 0.2s;
-}
-.ytm-glass-btn:hover { background: rgba(255,255,255,0.25); transform: scale(1.02); }
-.ytm-glass-btn.icon-btn { padding: 8px 12px; font-size: 16px; }
-
-/* 設定パネル */
-#ytm-settings-panel {
-    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 360px; padding: 25px;
-    background: rgba(30,30,30,0.95); border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);
-    z-index: 99999; display: none; flex-direction: column; gap: 15px; color: #fff;
-    font-family: sans-serif; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-}
-#ytm-settings-panel.active { display: flex; }
-#ytm-settings-panel h3 { margin: 0 0 5px 0; font-size: 18px; }
-#ytm-settings-panel input[type="password"] { width: 100%; padding: 10px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 6px; box-sizing: border-box; }
-#ytm-settings-panel button { padding: 10px; background: #fff; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; color: #000; }
-.toggle-label { display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 14px; }
-#trans-toggle { appearance: none; width: 40px; height: 22px; background: rgba(255,255,255,0.2); border-radius: 20px; position: relative; transition: 0.3s; }
-#trans-toggle:checked { background: #34c759; }
-#trans-toggle::after { content: ''; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; background: #fff; border-radius: 50%; transition: 0.3s; }
-#trans-toggle:checked::after { transform: translateX(18px); }
-
-/* 設定パネル内・言語ピル */
-.ytm-lang-section { margin-top: 10px; }
-.ytm-lang-label { font-size: 12px; margin-bottom: 4px; opacity: 0.8; }
-.ytm-lang-group {
-    display: inline-flex;
-    gap: 4px;
-    background: rgba(255,255,255,0.06);
-    padding: 4px;
-    border-radius: 999px;
-}
-.ytm-lang-pill {
-    border-radius: 999px;
-    border: none;
-    padding: 4px 10px;
-    font-size: 12px;
-    cursor: pointer;
-    background: transparent;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
     color: #fff;
-    opacity: 0.8;
-    transition: background 0.15s ease, opacity 0.15s ease, transform 0.1s ease;
-}
-.ytm-lang-pill.active {
-    background: rgba(255,255,255,0.9);
-    color: #111;
-    opacity: 1;
-    transform: translateY(-0.5px);
-}
-.ytm-lang-pill:hover {
-    opacity: 1;
+    cursor: pointer;
+    font-weight: 700;
+    backdrop-filter: blur(10px);
+    font-size: 13px;
+    transition: 0.2s;
 }
 
-/* API設定×ボタン */
-#ytm-settings-close-btn {
-    /* position等は inline-style で付与済み */
+.ytm-glass-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.02);
 }
 
-/* 歌詞エリア */
-#my-lyrics-container { width: 500px; height: 65vh; overflow-y: auto; scrollbar-width: none; mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent); }
-#my-lyrics-container::-webkit-scrollbar { display: none; }
+.ytm-glass-btn.icon-btn {
+    padding: 8px 12px;
+    font-size: 16px;
+}
+
+#ytm-settings-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 360px;
+    padding: 25px;
+    background: rgba(30, 30, 30, 0.95);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 99999;
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+    color: #fff;
+    font-family: sans-serif;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+#ytm-settings-panel.active {
+    display: flex;
+}
+
+#ytm-settings-panel h3 {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+}
+
+#ytm-settings-panel input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+#ytm-settings-panel button {
+    padding: 10px;
+    background: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #000;
+}
+
+.toggle-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#trans-toggle {
+    appearance: none;
+    width: 40px;
+    height: 22px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    position: relative;
+    transition: 0.3s;
+}
+
+#trans-toggle:checked {
+    background: #34c759;
+}
+
+#trans-toggle::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 18px;
+    height: 18px;
+    background: #fff;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+#trans-toggle:checked::after {
+    transform: translateX(18px);
+}
+
+#my-lyrics-container {
+    width: 500px;
+    height: 65vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+}
+
+#my-lyrics-container::-webkit-scrollbar {
+    display: none;
+}
 
 .lyric-line {
-  font-family: "SF Pro Display", sans-serif;
-  font-size: 32px;
-  font-weight: 800;
-  color: rgba(255,255,255,0.3);
-  margin-bottom: 35px;
-  cursor: pointer;
-  transition: 0.5s;
-  transform-origin: left;
-  filter: blur(1px);
-  transform: scale(0.95);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+    font-family: "SF Pro Display", sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 35px;
+    cursor: pointer;
+    transition: 0.5s;
+    transform-origin: left;
+    filter: blur(1px);
+    transform: scale(0.95);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
+
 .lyric-line.active {
-  color: #fff;
-  filter: blur(0);
-  transform: scale(1.05);
-  text-shadow: 0 0 30px rgba(255,255,255,0.5);
+    color: #fff;
+    filter: blur(0);
+    transform: scale(1.05);
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
 }
+
 .lyric-translation {
-  display: block;
-  font-size: 0.55em;
-  opacity: 0.85;
-  margin-top: 6px;
-  line-height: 1.4;
-  font-weight: 600;
-}
-
-/* Apple Music っぽい「翻訳がふわっと現れる」アニメーション */
-body.ytm-custom-layout.ytm-has-timestamp .lyric-line .lyric-translation {
-    opacity: 0;
-    max-height: 0;
-    margin-top: 0;
-    overflow: hidden;
-    transition:
-        opacity 0.25s ease-out,
-        max-height 0.25s ease-out,
-        margin-top 0.25s ease-out;
-}
-body.ytm-custom-layout.ytm-has-timestamp .lyric-line.show-translation .lyric-translation {
-    opacity: 0.95;
-    max-height: 4em;
+    display: block;
+    font-size: 0.55em;
+    opacity: 0.85;
     margin-top: 6px;
+    line-height: 1.4;
+    font-weight: 600;
 }
 
-/* プレーヤーバーのスタイル */
 body.ytm-custom-layout ytmusic-player-bar {
-  position: fixed !important; 
-  bottom: 40px !important; left: 50% !important; transform: translateX(-50%) !important;
-  width: 95% !important; max-width: 900px !important; 
-  height: 80px !important; border-radius: 40px !important;
-  background: rgba(20,20,20,0.6) !important; backdrop-filter: blur(60px) saturate(180%) !important;
-  border: 1px solid rgba(255,255,255,0.15) !important; 
-  display: flex !important; flex-wrap: nowrap !important;
-  justify-content: space-between !important; align-items: center !important;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5) !important;
-  padding: 0 20px !important;
-  z-index: 2000 !important; visibility: visible !important; opacity: 1 !important;
-  overflow: hidden !important;
+    position: fixed !important;
+    bottom: 40px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 95% !important;
+    max-width: 900px !important;
+    height: 80px !important;
+    border-radius: 40px !important;
+    background: rgba(20, 20, 20, 0.6) !important;
+    backdrop-filter: blur(60px) saturate(180%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+    padding: 0 20px !important;
+    z-index: 2000 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    overflow: hidden !important;
 }
-body.ytm-custom-layout .left-controls { flex: 0 0 auto !important; justify-content: flex-start !important; }
-body.ytm-custom-layout .right-controls { flex: 0 0 auto !important; justify-content: flex-end !important; }
-body.ytm-custom-layout .middle-controls { 
-    flex: 1 1 auto !important; 
-    justify-content: center !important; 
+
+body.ytm-custom-layout .left-controls {
+    flex: 0 0 auto !important;
+    justify-content: flex-start !important;
+}
+
+body.ytm-custom-layout .right-controls {
+    flex: 0 0 auto !important;
+    justify-content: flex-end !important;
+}
+
+/* 中央コントロールの幅を確保 */
+body.ytm-custom-layout .middle-controls {
+    flex: 1 1 auto !important;
+    justify-content: center !important;
     margin: 0 15px !important;
     max-width: 600px !important;
     padding: 0 5px !important;
 }
-body.ytm-custom-layout tp-yt-paper-slider { 
+
+/* プログレスバーの強制1行化 */
+body.ytm-custom-layout tp-yt-paper-slider {
     width: calc(100% - 20px) !important;
-    margin: 0 !important; padding: 0 !important; flex: 1 !important;
-    height: 40px !important; display: flex !important; align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex: 1 !important;
+    height: 40px !important;
+    display: flex !important;
+    align-items: center !important;
 }
+
+/* ボタン色強制 */
 body.ytm-custom-layout ytmusic-player-bar tp-yt-iron-icon,
 body.ytm-custom-layout ytmusic-player-bar .time-info,
 body.ytm-custom-layout ytmusic-player-bar button:not(#my-mode-toggle) {
-    color: #ffffff !important; fill: #ffffff !important; opacity: 1 !important;
+    color: #ffffff !important;
+    fill: #ffffff !important;
+    opacity: 1 !important;
 }
-body.ytm-custom-layout ytmusic-player-bar .background, 
+
+/* 不要要素非表示 */
+body.ytm-custom-layout ytmusic-player-bar .background,
 body.ytm-custom-layout ytmusic-player-bar #container,
 body.ytm-custom-layout ytmusic-player-bar .thumbnail-image-wrapper,
-body.ytm-custom-layout ytmusic-player-bar .content-info-wrapper { display: none !important; }
+body.ytm-custom-layout ytmusic-player-bar .content-info-wrapper {
+    display: none !important;
+}
 
-#my-mode-toggle { border: none; border-radius: 16px; padding: 8px 16px; font-weight: 700; cursor: pointer; margin-left: 10px; font-size: 12px; transition: 0.2s; }
+#my-mode-toggle {
+    border: none;
+    border-radius: 16px;
+    padding: 8px 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 12px;
+    transition: 0.2s;
+}
 
-/* === アップロードメニュー（グラス UI） === */
-.ytm-upload-menu {
-    position: absolute;
-    bottom: 52px;
-    right: 0;
-    min-width: 240px;
-    padding: 8px;
-    border-radius: 18px;
-    background: rgba(15, 15, 20, 0.75);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(22px) saturate(160%);
-    -webkit-backdrop-filter: blur(22px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.16);
+/* Footer Info Area */
+.ytm-lyrics-footer {
+    margin-top: 40px;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    z-index: 9999;
-    transform-origin: bottom right;
-    transform: translateY(6px) scale(0.96);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.16s ease-out, transform 0.16s ease-out;
-}
-.ytm-upload-menu.visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
-}
-.ytm-upload-menu-title {
-    font-size: 12px;
-    opacity: 0.75;
-    padding: 4px 10px 6px;
-}
-.ytm-upload-menu-item {
-    border: none;
-    background: transparent;
-    color: #fff;
-    padding: 8px 10px;
-    font-size: 13px;
-    display: flex;
     align-items: center;
-    gap: 8px;
-    border-radius: 12px;
-    cursor: pointer;
-    text-align: left;
-    width: 100%;
-}
-.ytm-upload-menu-item:hover {
-    background: rgba(255, 255, 255, 0.12);
-}
-.ytm-upload-menu-item-icon {
-    width: 20px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0.9;
-}
-.ytm-upload-menu-separator {
-    height: 1px;
-    margin: 4px 6px;
-    background: radial-gradient(circle at center, rgba(255,255,255,0.4), transparent);
-    opacity: 0.6;
+    gap: 15px;
+    opacity: 0.8;
+    transition: opacity 0.3s;
 }
 
-/* === 歌詞削除用グラスダイアログ === */
-.ytm-confirm-dialog {
-    position: absolute;
-    bottom: 52px;
-    right: 56px;
-    min-width: 260px;
-    padding: 10px 10px 8px;
-    border-radius: 18px;
-    background: rgba(15, 15, 20, 0.92);
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.65);
-    backdrop-filter: blur(22px) saturate(160%);
-    -webkit-backdrop-filter: blur(22px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    z-index: 9999;
-    transform-origin: bottom right;
-    transform: translateY(6px) scale(0.96);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.16s ease-out, transform 0.16s ease-out;
-}
-.ytm-confirm-dialog.visible {
+.ytm-lyrics-footer:hover {
     opacity: 1;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
 }
-.ytm-confirm-title {
-    font-size: 13px;
+
+.ytm-footer-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
     font-weight: 600;
-    margin-bottom: 4px;
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-block;
 }
-.ytm-confirm-message {
-    font-size: 12px;
-    opacity: 0.85;
-    margin-bottom: 10px;
-    line-height: 1.4;
+
+.ytm-footer-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
 }
-.ytm-confirm-buttons {
+
+.ytm-footer-info {
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(66, 133, 244, 0.1);
+    /* Slight blue tint for AI info */
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(66, 133, 244, 0.2);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.ytm-footer-info p {
+    margin: 5px 0;
+}
+
+.ytm-link {
+    color: #8ab4f8;
+    text-decoration: none;
+    font-weight: 600;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+.ytm-link:hover {
+    text-decoration: underline;
+    color: #aecbfa;
+}
+
+.ytm-player-link {
+    background: linear-gradient(135deg, rgba(250, 45, 72, 0.2) 0%, rgba(255, 77, 103, 0.2) 100%);
+    border-color: rgba(250, 45, 72, 0.4);
+    color: #ff8a9d;
+}
+
+.ytm-player-link:hover {
+    background: linear-gradient(135deg, rgba(250, 45, 72, 0.4) 0%, rgba(255, 77, 103, 0.4) 100%);
+    color: #fff;
+}
+
+/* Right Column Layout */
+#ytm-custom-right-col {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: column;
+    width: 500px;
+    height: 65vh;
+}
+
+#ytm-ai-info-area {
+    margin-bottom: 20px;
+    animation: fadeIn 0.5s ease;
+    width: 100%;
+}
+
+/* Override lyrics container to fit in flex column */
+#my-lyrics-container {
+    width: 100% !important;
+    height: auto !important;
+    flex: 1;
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+/* AI Info Header Styles */
+.ytm-ai-info-container {
+    background: rgba(66, 133, 244, 0.1);
+    border: 1px solid rgba(66, 133, 244, 0.2);
+    border-radius: 12px;
+    padding: 12px 16px;
+    backdrop-filter: blur(10px);
+}
+
+
+/* New AI Status Bar Styles */
+.ytm-ai-status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 30px;
+    padding: 6px 16px;
+    backdrop-filter: blur(12px);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.ytm-ai-status-bar:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.ytm-ai-status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.ytm-ai-icon {
+    font-size: 1rem;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+}
+
+.ytm-ai-actions {
+    display: flex;
     gap: 8px;
 }
-.ytm-confirm-btn {
-    border-radius: 999px;
-    padding: 5px 12px;
-    border: none;
-    font-size: 12px;
-    cursor: pointer;
+
+.ytm-ai-action-btn {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    padding: 4px 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
 }
-.ytm-confirm-btn.cancel {
-    background: transparent;
+
+.ytm-ai-action-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
 }
-.ytm-confirm-btn.cancel:hover {
-    background: rgba(255, 255, 255, 0.12);
+
+.ytm-ai-action-btn.player {
+    background: rgba(250, 45, 72, 0.1);
+    color: #ff8a9d;
+    border-color: rgba(250, 45, 72, 0.2);
 }
-.ytm-confirm-btn.danger {
-    background: rgba(255, 61, 80, 0.9);
+
+.ytm-ai-action-btn.player:hover {
+    background: rgba(250, 45, 72, 0.25);
     color: #fff;
-}
-.ytm-confirm-btn.danger:hover {
-    background: rgba(255, 61, 80, 1);
+    border-color: rgba(250, 45, 72, 0.4);
+    box-shadow: 0 4px 12px rgba(250, 45, 72, 0.2);
 }
